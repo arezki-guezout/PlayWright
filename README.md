@@ -50,3 +50,10 @@
 8-  Manipulation des Jeux de données JDD ou Fixtures
     - créez un un fichier csv, dans lequel vous aurez vos jeux de données, mettez-le dans le repertoire tests
     - dans votre fichier de test, faites appel au fichier csv, puis opérez une itération sur vos lignes. les assertions peuvent être faites avec une conditionnelle
+
+9-  Intégration avec Jenkins
+    - créez à la racine de votre projet, un fichier Jenkinsfile
+    - utilisez l'image mcr.microsoft.com/playwright:v1.51.0-noble
+    - exportez les artifacts suivants allure-results/*.*
+    - sur l'interface de Jenkins, installez le plugin blueocean, puis créer un job de type pipeline, puis rattachez le à votre dépot github et sur la branche JenkinsIntegration. 
+    - lancez le build, puis allez sur BlueOcean, vérifiez que vos artifacts ont été exporté (menu artifacts coin supérieur droit).
