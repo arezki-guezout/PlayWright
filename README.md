@@ -14,3 +14,7 @@
     Si les tests sur le navigateur Webkit échouent, alors commenter le bloc relatif à webkit dans la section projects dans le fichier playwright.config.ts
     *******
     - Vérifier le rapport index.html qui se trouve dans playwright-report (ouvrir avec un navigateur)
+ 4- Création des Pages Object Model
+    - créer un repertoire pages
+    - y créer les class correspondant à vos pages
+    - créer les tests en utilisant les POM
