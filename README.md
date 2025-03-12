@@ -40,3 +40,9 @@
     - executez vos tests avec la commande npx playwright test --reporter=allure-playwright
     - un nouveau dossier allure-results devrait apparaitre avec des fichiers *.json
     - pour visualiser les rapport allure vous devrez d'abord installer un outil de generation et de visualisation dont la doc est fourni sur le lien DOC2, suite à ça, vous pourrez génerer vos rapports avec la commande allure generate ./allure-results -o ./allure-report, puis allure open ./allure-report.
+
+7- Gestion des traces
+    - faites échouer un test
+    - lancer vas test via la commande npx playwright test --trace on
+    - une trace est créer pour chaque test (un dossier par test dans test-results, dans cahque dossier se trouve un fichier trace.zip)
+    - pour visualiser l'une de ces traces, executer la cammande npx playwright show-trace test-results/<nom_repertoire>/trace.zip

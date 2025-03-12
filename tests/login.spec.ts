@@ -10,7 +10,7 @@ test.beforeEach("connexion a sauce demo", async ({page})=>{
 })
 
 test('login to saucedemo', {tag: '@smoke',}, async ({ page })=>{
-  await lp.saisirUserName("standard_user")
+  await lp.saisirUserName("standard_user_incorrect")
   await lp.saisirPassword("secret_sauce")
   await lp.cliquerBtn()
   await expect(page).toHaveURL(/inventory/)
