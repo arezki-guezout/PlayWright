@@ -1,0 +1,7 @@
+"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
+"","3005","login to saucedemo with error","chromium","Wed Mar 12 14:16:38 CET 2025","passed","Wed Mar 12 14:16:41 CET 2025","scenario de connexion","login.spec.ts","",""
+"","1217","ajouter un produit","chromium","Wed Mar 12 14:16:41 CET 2025","passed","Wed Mar 12 14:16:43 CET 2025","Ajout et suppression de produit","produit.spec.ts","",""
+"","2978","login to saucedemo","chromium","Wed Mar 12 14:16:38 CET 2025","passed","Wed Mar 12 14:16:41 CET 2025","scenario de connexion","login.spec.ts","",""
+"","7773","login to saucedemo with error","firefox","Wed Mar 12 14:16:44 CET 2025","passed","Wed Mar 12 14:16:52 CET 2025","scenario de connexion","login.spec.ts","",""
+"","8364","login to saucedemo","firefox","Wed Mar 12 14:16:43 CET 2025","passed","Wed Mar 12 14:16:51 CET 2025","scenario de connexion","login.spec.ts","",""
+"","2333","ajouter un produit","firefox","Wed Mar 12 14:16:54 CET 2025","passed","Wed Mar 12 14:16:56 CET 2025","Ajout et suppression de produit","produit.spec.ts","",""
