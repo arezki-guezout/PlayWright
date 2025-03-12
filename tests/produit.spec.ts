@@ -5,7 +5,7 @@ import LoginPage from "../pages/login.page";
 test.describe("Ajout et suppression de produit", ()=>{
     let lp:LoginPage
     let pp:ProductPage
-    
+
     test.beforeEach("Connexion a sauce demo", async ({page})=>{
         await page.goto("https://www.saucedemo.com/");
         await expect(page).toHaveTitle(/Swag Labs/);
@@ -15,7 +15,7 @@ test.describe("Ajout et suppression de produit", ()=>{
         await lp.cliquerBtn()
     })
 
-    test('ajouter un produit', async({ page }) => {
+    test('ajouter un produit', {tag: '@regression',}, async({ page }) => {
         pp= new ProductPage(page);
         await pp.ajouterProduit();
         await expect(await pp.getBadge()).toBeVisible();

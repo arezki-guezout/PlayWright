@@ -1,0 +1,75 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: scenario de connexion >> login to saucedemo
+- Location: /home/logwire/code/testing/playwright/tests/login.spec.ts:12:5
+
+# Error details
+
+```
+Error: Timed out 5000ms waiting for expect(locator).toHaveURL(expected)
+
+Locator: locator(':root')
+Expected pattern: /inventory/
+Received string:  "https://www.saucedemo.com/"
+Call log:
+  - expect.toHaveURL with timeout 5000ms
+  - waiting for locator(':root')
+    8 × locator resolved to <html lang="en">…</html>
+      - unexpected value "https://www.saucedemo.com/"
+
+    at /home/logwire/code/testing/playwright/tests/login.spec.ts:16:22
+```
+
+# Page snapshot
+
+```yaml
+- text: Swag Labs
+- textbox "Username": standard_user_incorrect
+- textbox "Password": secret_sauce
+- 'heading "Epic sadface: Username and password do not match any user in this service" [level=3]':
+  - button
+  - text: "Epic sadface: Username and password do not match any user in this service"
+- button "Login"
+- heading "Accepted usernames are:" [level=4]
+- text: standard_user locked_out_user problem_user performance_glitch_user error_user visual_user
+- heading "Password for all users:" [level=4]
+- text: secret_sauce
+```
+
+# Test source
+
+```ts
+   1 | import { test, expect } from '@playwright/test';
+   2 | import LoginPage from '../pages/login.page';
+   3 | test.describe("scenario de connexion", () => {
+   4 | let lp:LoginPage;
+   5 |
+   6 | test.beforeEach("connexion a sauce demo", async ({page})=>{
+   7 |   await page.goto("https://www.saucedemo.com/");
+   8 |   await expect(page).toHaveTitle(/Swag Labs/);
+   9 |   lp = new LoginPage(page)
+  10 | })
+  11 |
+  12 | test('login to saucedemo', {tag: '@smoke',}, async ({ page })=>{
+  13 |   await lp.saisirUserName("standard_user_incorrect")
+  14 |   await lp.saisirPassword("secret_sauce")
+  15 |   await lp.cliquerBtn()
+> 16 |   await expect(page).toHaveURL(/inventory/)
+     |                      ^ Error: Timed out 5000ms waiting for expect(locator).toHaveURL(expected)
+  17 | })
+  18 |
+  19 | test('login to saucedemo with error', {tag: ['@smoke', '@sanity'],}, async ({ page })=>{
+  20 |   await lp.saisirUserName("standard_user_incorrect")
+  21 |   await lp.saisirPassword("secret_sauce")
+  22 |   await lp.cliquerBtn()
+  23 |   await expect(await lp.getErrorMsg()).toBeVisible()
+  24 | })
+  25 | })
+  26 |
+```

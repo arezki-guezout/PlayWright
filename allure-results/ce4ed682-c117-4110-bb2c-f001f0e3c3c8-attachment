@@ -1,0 +1,116 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: scenario de connexion >> login to saucedemo
+- Location: /home/logwire/code/testing/playwright/tests/login.spec.ts:21:5
+
+# Error details
+
+```
+Error: Timed out 5000ms waiting for expect(locator).toBeVisible()
+
+Locator: locator('h3[data-test=error]')
+Expected: visible
+Received: <element(s) not found>
+Call log:
+  - expect.toBeVisible with timeout 5000ms
+  - waiting for locator('h3[data-test=error]')
+
+    at /home/logwire/code/testing/playwright/tests/login.spec.ts:29:44
+```
+
+# Page snapshot
+
+```yaml
+- button "Open Menu"
+- img "Open Menu"
+- text: Swag Labs Products Name (A to Z)
+- combobox:
+  - option "Name (A to Z)" [selected]
+  - option "Name (Z to A)"
+  - option "Price (low to high)"
+  - option "Price (high to low)"
+- link "Sauce Labs Backpack":
+  - img "Sauce Labs Backpack"
+- link "Sauce Labs Backpack"
+- text: carry.allTheThings() with the sleek, streamlined Sly Pack that melds uncompromising style with unequaled laptop and tablet protection. $29.99
+- button "Add to cart"
+- link "Sauce Labs Bike Light":
+  - img "Sauce Labs Bike Light"
+- link "Sauce Labs Bike Light"
+- text: A red light isn't the desired state in testing but it sure helps when riding your bike at night. Water-resistant with 3 lighting modes, 1 AAA battery included. $9.99
+- button "Add to cart"
+- link "Sauce Labs Bolt T-Shirt":
+  - img "Sauce Labs Bolt T-Shirt"
+- link "Sauce Labs Bolt T-Shirt"
+- text: Get your testing superhero on with the Sauce Labs bolt T-shirt. From American Apparel, 100% ringspun combed cotton, heather gray with red bolt. $15.99
+- button "Add to cart"
+- link "Sauce Labs Fleece Jacket":
+  - img "Sauce Labs Fleece Jacket"
+- link "Sauce Labs Fleece Jacket"
+- text: It's not every day that you come across a midweight quarter-zip fleece jacket capable of handling everything from a relaxing day outdoors to a busy day at the office. $49.99
+- button "Add to cart"
+- link "Sauce Labs Onesie":
+  - img "Sauce Labs Onesie"
+- link "Sauce Labs Onesie"
+- text: Rib snap infant onesie for the junior automation engineer in development. Reinforced 3-snap bottom closure, two-needle hemmed sleeved and bottom won't unravel. $7.99
+- button "Add to cart"
+- link "Test.allTheThings() T-Shirt (Red)":
+  - img "Test.allTheThings() T-Shirt (Red)"
+- link "Test.allTheThings() T-Shirt (Red)"
+- text: This classic Sauce Labs t-shirt is perfect to wear when cozying up to your keyboard to automate a few tests. Super-soft and comfy ringspun combed cotton. $15.99
+- button "Add to cart"
+- contentinfo:
+  - list:
+    - listitem:
+      - link "Twitter"
+    - listitem:
+      - link "Facebook"
+    - listitem:
+      - link "LinkedIn"
+  - text: © 2025 Sauce Labs. All Rights Reserved. Terms of Service | Privacy Policy
+```
+
+# Test source
+
+```ts
+   1 | import { test, expect } from '@playwright/test';
+   2 | import LoginPage from '../pages/login.page';
+   3 | import { parse } from 'csv-parse/sync';
+   4 | import fs from 'fs';
+   5 | import path from 'path';
+   6 | test.describe("scenario de connexion", () => {
+   7 | let lp:LoginPage;
+   8 |
+   9 | const users = parse(fs.readFileSync(path.join(__dirname, 'input.csv')), {
+  10 |   columns: true,
+  11 |   skip_empty_lines: true
+  12 | });
+  13 |
+  14 |
+  15 | test.beforeEach("connexion a sauce demo", async ({page})=>{
+  16 |   await page.goto("https://www.saucedemo.com/");
+  17 |   await expect(page).toHaveTitle(/Swag Labs/);
+  18 |   lp = new LoginPage(page)
+  19 | })
+  20 |
+  21 | test('login to saucedemo', {tag: '@smoke',}, async ({ page })=>{
+  22 |   for (const user of users ){
+  23 |     await lp.saisirUserName(user.username)
+  24 |     await lp.saisirPassword(user.pass)
+  25 |     await lp.cliquerBtn()
+  26 |     if(user.result == "correct" )
+  27 |       await expect(page).toHaveURL(/inventory/)
+  28 |     else
+> 29 |       await expect(await lp.getErrorMsg()).toBeVisible()
+     |                                            ^ Error: Timed out 5000ms waiting for expect(locator).toBeVisible()
+  30 |   }
+  31 | })
+  32 | })
+  33 |
+```
