@@ -9,14 +9,14 @@ test.beforeEach("connexion a sauce demo", async ({page})=>{
   lp = new LoginPage(page)
 })
 
-test('login to saucedemo', async ({ page })=>{
+test('login to saucedemo', {tag: '@smoke',}, async ({ page })=>{
   await lp.saisirUserName("standard_user")
   await lp.saisirPassword("secret_sauce")
   await lp.cliquerBtn()
   await expect(page).toHaveURL(/inventory/)
 })
 
-test('login to saucedemo with error', async ({ page })=>{
+test('login to saucedemo with error', {tag: ['@smoke', '@sanity'],}, async ({ page })=>{
   await lp.saisirUserName("standard_user_incorrect")
   await lp.saisirPassword("secret_sauce")
   await lp.cliquerBtn()

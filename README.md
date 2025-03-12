@@ -18,3 +18,6 @@
     - créer un repertoire pages
     - y créer les class correspondant à vos pages
     - créer les tests en utilisant les POM
+5- Création des tags afin d'executer uniquement certains tags
+    - ajouter l'objet { tag: '@smoke', } ou {tag: ['@regression', '@sanity'],} comme parametre de votre test
+    executer vos tests avec la commande npx playwright test --grep @smoke
