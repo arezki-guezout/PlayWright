@@ -1,0 +1,5 @@
+"username","pass","result"
+"standard_user_incorrect","secret_sauce","wrong"
+"standard_user_incorrect","secret_sauce_incorrect","wrong"
+"standard_user","secret_sauce","right"
+"standard_user","secret_sauce_incorrect","wrong"

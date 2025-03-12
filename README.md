@@ -46,3 +46,7 @@
     - lancer vas test via la commande npx playwright test --trace on
     - une trace est créer pour chaque test (un dossier par test dans test-results, dans cahque dossier se trouve un fichier trace.zip)
     - pour visualiser l'une de ces traces, executer la cammande npx playwright show-trace test-results/<nom_repertoire>/trace.zip
+
+8-  Manipulation des Jeux de données JDD ou Fixtures
+    - créez un un fichier csv, dans lequel vous aurez vos jeux de données, mettez-le dans le repertoire tests
+    - dans votre fichier de test, faites appel au fichier csv, puis opérez une itération sur vos lignes. les assertions peuvent être faites avec une conditionnelle
